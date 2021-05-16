@@ -1,0 +1,86 @@
+# Exported from Fuse 1.3.0
+
+newmtl Top
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd pesar_Top_diffuse.png
+map_Ks pesar_Top_specular.png
+bump pesar_Top_normal.png
+map_Ns pesar_Top_gloss.png
+
+newmtl Glove
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd pesar_Glove_diffuse.png
+map_Ks pesar_Glove_specular.png
+bump pesar_Glove_normal.png
+map_Ns pesar_Glove_gloss.png
+
+newmtl Hat
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd pesar_Hat_diffuse.png
+map_Ks pesar_Hat_specular.png
+bump pesar_Hat_normal.png
+map_Ns pesar_Hat_gloss.png
+
+newmtl Body
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd pesar_Body_diffuse.png
+map_Ks pesar_Body_specular.png
+bump pesar_Body_normal.png
+map_Ns pesar_Body_gloss.png
+
+newmtl Bottom
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd pesar_Bottom_diffuse.png
+map_Ks pesar_Bottom_specular.png
+bump pesar_Bottom_normal.png
+map_Ns pesar_Bottom_gloss.png
+
+newmtl Eyewear
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd pesar_Eyewear_diffuse.png
+map_Ks pesar_Eyewear_specular.png
+bump pesar_Eyewear_normal.png
+map_Ns pesar_Eyewear_gloss.png
+
+newmtl Shoes
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd pesar_Shoes_diffuse.png
+map_Ks pesar_Shoes_specular.png
+bump pesar_Shoes_normal.png
+map_Ns pesar_Shoes_gloss.png
+
