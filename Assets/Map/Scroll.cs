@@ -6,7 +6,11 @@ public class Scroll : MonoBehaviour
 {
     private void FixedUpdate()
     {
-        this.transform.position += AstroController.player.transform.forward * -0.16f;
+        if(AstroController.isDead)
+        {
+            return;
+        }
+        this.transform.position += AstroController.player.transform.forward * -0.1f;
         if(AstroController.currentPlatfrom == null)
         {
             return;

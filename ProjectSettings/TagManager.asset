@@ -11,6 +11,9 @@ TagManager:
   - stairsDown
   - platformTSection
   - AstroDude
+  - Fire
+  - Wall
+  - Spell
   layers:
   - Default
   - TransparentFX

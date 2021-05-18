@@ -9,10 +9,24 @@ public class AstroController : MonoBehaviour
     public static GameObject currentPlatfrom;
     bool canTurn = false;
     Vector3 startPosition;
+    public static bool isDead = false;
+    public static Rigidbody rBody;
+
+    public GameObject magic;
+    public Transform magicStartPos;
+    Rigidbody magicRBody;
 
     private void OnCollisionEnter(Collision other)
     {
-        currentPlatfrom = other.gameObject;
+        if(other.gameObject.tag == "Fire" || other.gameObject.tag == "Wall")
+        {
+            animator.SetTrigger("isDead");
+            isDead = true;
+        }
+        else
+        {
+            currentPlatfrom = other.gameObject;
+        }
     }
 
     // Start is called before the first frame update
@@ -22,6 +36,25 @@ public class AstroController : MonoBehaviour
         player = this.gameObject;
         startPosition = player.transform.position;
         GenerateWorld.runDummy();
+        rBody = this.GetComponent<Rigidbody>(); 
+        magicRBody = magic.GetComponent<Rigidbody>();
+    }
+
+    void castMagic()
+    {
+        if(isDead)
+        {
+            return;
+        }
+        magic.transform.position = magicStartPos.position;
+        magic.SetActive(true);
+        magicRBody.AddForce(this.transform.forward*20000);
+        Invoke("killMagic", 2f);
+    }
+
+    void killMagic()
+    {
+        magic.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,9 +81,14 @@ public class AstroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isDead)
+        {
+            return;
+        }
         if(Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("isJumping", true);
+            rBody.AddForce(Vector3.up * 40000);
         }
         else if(Input.GetKeyDown(KeyCode.M))
         {
