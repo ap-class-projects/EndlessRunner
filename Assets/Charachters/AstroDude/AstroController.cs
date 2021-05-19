@@ -88,7 +88,7 @@ public class AstroController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("isJumping", true);
-            rBody.AddForce(Vector3.up * 40000);
+            rBody.AddForce(Vector3.up * 80000);
         }
         else if(Input.GetKeyDown(KeyCode.M))
         {
