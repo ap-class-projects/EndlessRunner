@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    public GameObject helpPanel; 
+    GameObject[] panels;
+    GameObject[] mainMenuButtons;
+
     public void loadGameScene()
     {
         SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
@@ -13,17 +16,35 @@ public class MainMenuController : MonoBehaviour
 
     public void Start()
     {
-        helpPanel.SetActive(false);
+        panels = GameObject.FindGameObjectsWithTag("subPanel");
+        mainMenuButtons = GameObject.FindGameObjectsWithTag("mmButton");
+
+        foreach(GameObject p in panels)
+        {
+            p.SetActive(false);
+        }
+
     }
 
-    public void closeHelpPanel()
+    public void closePanel(Button button)
     {
-        helpPanel.SetActive(false);
+        button.gameObject.transform.parent.gameObject.SetActive(false);
+        foreach (GameObject b in mainMenuButtons)
+        {
+            b.SetActive(true);
+        }
     }
 
-    public void openHelpPanel()
+    public void openPanel(Button button)
     {
-        helpPanel.SetActive(true);
+        button.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        foreach (GameObject b in mainMenuButtons)
+        {
+            if(b != button.gameObject)
+            {
+                b.SetActive(false);
+            }
+        }
     }
 
     public void quitGame()
