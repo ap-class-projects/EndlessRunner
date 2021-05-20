@@ -11,6 +11,7 @@ public class MainMenuController : MonoBehaviour
 
     public void loadGameScene()
     {
+        AstroController.isDead = false;
         SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
     }
 
