@@ -19,7 +19,7 @@ public class Scroll : MonoBehaviour
         {
             this.transform.Translate(0, -0.06f, 0);
         }
-        if (AstroController.currentPlatfrom.tag == "stairsUp")
+        if (AstroController.currentPlatfrom.tag == "stairsDown")
         {
             this.transform.Translate(0, 0.06f, 0);
         }

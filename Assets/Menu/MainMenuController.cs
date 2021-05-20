@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     GameObject[] panels;
-    GameObject[] mainMenuButtons;
-
+    public static GameObject[] mainMenuButtons;
+    int maxLives = 3;
+    
     public void loadGameScene()
     {
-        AstroController.isDead = false;
+        PlayerPrefs.SetInt("lives", maxLives);
         SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
     }
 

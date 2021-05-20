@@ -17,16 +17,19 @@ public class GameData : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             gameDataExists = true;
         }
-
         singleton = this;
+
+        PlayerPrefs.SetInt("score", 0);
     }
 
     public void updateScore(int score)
     {
         this.score += score;
+        PlayerPrefs.SetInt("score", this.score);
         if(scoreText != null)
         {
-            scoreText.text = "Score : " + this.score;
+            scoreText.text = $"Score : {this.score}";
         }
+
     }
 }

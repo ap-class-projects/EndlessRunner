@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AstroController : MonoBehaviour
 {
@@ -16,12 +18,50 @@ public class AstroController : MonoBehaviour
     public Transform magicStartPos;
     Rigidbody magicRBody;
 
+    int livesLeft;
+    public Texture aiveIcon;
+    public Texture deadIcon;
+    public RawImage[] icons;
+
+    public GameObject gameOverPanel;
+
+    public Text highestScore;
+
+    void restartGame()
+    {
+        SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
+    }
+
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Fire" || other.gameObject.tag == "Wall")
+        if((other.gameObject.tag == "Fire" || other.gameObject.tag == "Wall") && !isDead )
         {
             animator.SetTrigger("isDead");
             isDead = true;
+            livesLeft--;
+            PlayerPrefs.SetInt("lives", livesLeft);
+            if(livesLeft > 0)
+            {
+                Invoke("restartGame", 2f);
+            }
+            else
+            {
+                //Game Over
+                icons[0].texture = deadIcon;
+                gameOverPanel.SetActive(true);
+                PlayerPrefs.SetInt("lastScore", PlayerPrefs.GetInt("score"));
+                if(PlayerPrefs.HasKey("highestScore"))
+                {
+                    if(PlayerPrefs.GetInt("highestScore") < PlayerPrefs.GetInt("score"))
+                    {
+                        PlayerPrefs.SetInt("highestScore", PlayerPrefs.GetInt("score"));
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("highestScore", PlayerPrefs.GetInt("score"));
+                }
+            }
         }
         else
         {
@@ -38,6 +78,24 @@ public class AstroController : MonoBehaviour
         GenerateWorld.runDummy();
         rBody = this.GetComponent<Rigidbody>(); 
         magicRBody = magic.GetComponent<Rigidbody>();
+        isDead = false;
+        livesLeft = PlayerPrefs.GetInt("lives");
+        for(int i = 0; i < icons.Length; i++)
+        {
+            if(i>= livesLeft)
+            {
+                icons[i].texture = deadIcon;
+            }
+        }
+        if(PlayerPrefs.HasKey("highestScore"))
+        {
+            highestScore.text = $"Highest : {PlayerPrefs.GetInt("highestScore")}";
+        }
+        else
+        {
+            highestScore.text = $"Highest : 0";
+        }
+
     }
 
     void castMagic()
@@ -115,6 +173,28 @@ public class AstroController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             this.transform.Translate(0.4f, 0, 0);
+        }
+
+        PlayerPrefs.SetInt("lastScore", PlayerPrefs.GetInt("score"));
+        if (PlayerPrefs.HasKey("highestScore"))
+        {
+            if (PlayerPrefs.GetInt("highestScore") < PlayerPrefs.GetInt("score"))
+            {
+                PlayerPrefs.SetInt("highestScore", PlayerPrefs.GetInt("score"));
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("highestScore", PlayerPrefs.GetInt("score"));
+        }
+
+        if (PlayerPrefs.HasKey("highestScore"))
+        {
+            highestScore.text = $"Highest : {PlayerPrefs.GetInt("highestScore")}";
+        }
+        else
+        {
+            highestScore.text = $"Highest : 0";
         }
     }
 
