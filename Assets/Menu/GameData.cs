@@ -5,18 +5,19 @@ using UnityEngine.UI;
 
 public class GameData : MonoBehaviour
 {
-    static bool gameDataExists = false;
     public static GameData singleton;
     int score = 0;
     public Text scoreText = null;
 
     private void Awake()
     {
-        if(!gameDataExists)
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("GameData");
+        if(gameObjects.Length > 1)
         {
-            DontDestroyOnLoad(this.gameObject);
-            gameDataExists = true;
+            Destroy(this.gameObject);
         }
+
+        DontDestroyOnLoad(this.gameObject);
         singleton = this;
 
         PlayerPrefs.SetInt("score", 0);
